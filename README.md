@@ -1,6 +1,7 @@
 # ProjectInformatic2023
 Проект для школы "Информатик-2023"🥳. "Информатик" - это платформа,на которой с нуля можно научиться программированию на языке программирования Python.
 
+https://www.youtube.com/watch?v=RjeXjHkXEyc
 
 [![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=RjeXjHkXEyc)
 
