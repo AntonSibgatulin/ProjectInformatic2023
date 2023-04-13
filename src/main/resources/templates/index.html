@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+    <title>Добавление задач</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+
+        <div class="flex-center">
+            <input type="text" class="input-text-virable" placeholder="Текст\ном. задания(1)\варианта(-1)"/>
+            <a onclick="searchTasks()" class="button-virable" style="margin: 5px 0px 2px 5px;">Search</a>
+
+        </div>
+
+        <div id="place_for_tasks">
+
+        </div>
+
+        <div class="flex-center">
+            <div class="pre-header">
+                Главная
+            </div>
+        </div>
+
+
+        <div class="main-elements">
+            <th:block th:each="el : ${types}">
+                <div th:if="${el.getHide()==0}" class="line">
+                    <div class="count">
+
+                        <div class="big-element">[[${el.getType()}]]</div>
+
+
+                    </div>
+                    <a  th:href="${el.getLink()}" th:text="${el.getName()}" class="another-count">
+
+                    </a>
+                </div>
+            </th:block>
+        </div>
+
+
+    </div>
+</div>
+<th:block th:utext="${script}">
+
+</th:block>
+<script>
+
+    async function searchTasks() {
+        var doc1 = document.getElementsByClassName("input-text-virable")[0];
+        var doc = document.getElementById("place_for_tasks");
+        var el = await $.get("/search?id=" + doc1.value)
+        doc.innerHTML = el
+    }
+
+</script>
+</body>
+</html>

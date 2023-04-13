@@ -1,0 +1,6 @@
+{
+	"id":"PYTHON",
+	"buttons":["Создать переменную","цикл for","print","Условие if","Условие elif","условие else",".split(A,B)","Функция","join",">","<","=","or","and"],
+	"functions": ["createVirableWindow","cycleForWindow","printWindow","conditionWindow","conditionelifWindow","createElse","splitWindow","defWindow","addJoin","addRight","addLeft","addCenter","addOr","addAnd"]
+	
+}

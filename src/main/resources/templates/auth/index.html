@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Авторизация</title>
+
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+
+</head>
+<body>
+
+
+<div class="block-display">
+    <div class="window-create" style="justify-content: center;
+    align-items: start;
+    justify-items: center;
+    align-content: center;">
+
+        <div class="panel-close-window" >
+
+        </div>
+
+        <!--<div class="close-window" onclick="closeWindow(this)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g id="close">
+                    <path id="x"
+                          d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z"></path>
+                </g>
+            </svg>
+        </div>
+        -->
+
+
+        <div class="flex-center">
+
+            <div class="text-header">
+                Авторизация
+            </div>
+
+        </div>
+
+        <form action="/auth" method="POST" style="margin-top: 30px;">
+            <div>
+                <div class="text-virable">Логин или пароль</div>
+                <div class="flex-center">
+                    <input type="text" name="login" id="name_of_virable" class="input-text-virable"
+                           placeholder="Login or mail"/>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-virable">Пароль</div>
+                <div class="flex-center">
+                    <input id="value_of_virable" name="password" type="password" class="input-text-virable"
+                           placeholder='Password'/>
+                </div>
+            </div>
+
+            <div class="flex-left" style="margin-top: 10px">
+                <a href="/reg" style="font-size: 15pt">Регистрация</a>
+            </div>
+
+            <div class="flex-right">
+                <a class="button-virable" onclick="this.parentElement.parentElement.submit()">Авторизация</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

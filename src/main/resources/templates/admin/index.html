@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+    <script src="../../js/admin.js"></script>
+
+    <title>Добавление задач</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+
+        <div class="flex-center">
+            <input  type="text" class="input-text-virable" placeholder="Текст или номер задания\варианта"/>
+            <a onclick="searchTasks()" class="button-virable" style="margin: 5px 0px 2px 5px;" >Search</a>
+
+        </div>
+
+        <div id="place_for_tasks">
+
+        </div>
+
+        <div class="admin-offer">
+            <a class="flex-left text-auto" style="cursor: pointer;" href="/admin/create">
+                Создать новое задание
+            </a>
+
+
+            <a class="flex-left text-auto" href="/admin/edittype">
+                Редактировать типы заданий
+            </a>
+
+
+
+            <a href="/admin/theory" class="flex-left text-auto" >
+                Редактировать теорию по Python
+            </a>
+
+
+            <a href="/admin/directory" class="flex-left text-auto" >
+                Редактировать справочник проекта "Информатик"
+            </a>
+
+
+
+            <a class="flex-left text-auto" >
+                Статистика
+            </a>
+
+
+            <a class="flex-left text-auto" onclick="runEditTask()">
+                Редактировать задание
+            </a>
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    async function searchTasks(){
+        var doc1 = document.getElementsByClassName("input-text-virable")[0];
+        var doc = document.getElementById("place_for_tasks");
+        var el = await $.get("/admin/search?id="+doc1.value)
+        doc.innerHTML = el
+    }
+</script>
+</body>
+</html>

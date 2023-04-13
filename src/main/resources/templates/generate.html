@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+    <title>Информатик-2023: задания, ответы, решения.</title>
+
+    <th:block th:if="${user!=null && user.getTypeUser()>0}">
+
+        <script src="../../../js/admin.js"></script>
+
+    </th:block>
+
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+        <div class="flex-center">
+            <div class="text-auto">
+                Создание варианта
+            </div>
+        </div>
+        <form method="POST" action="/generate">
+            <div class="main-elements">
+                <th:block th:each="el : ${types}">
+                    <div class="line">
+                        <div class="count">
+                            <label class="switch">
+                                <input type="checkbox" name="tasks[]" th:value="${el.getType()}">
+                                <span class="slider round" ></span>
+                            </label>
+                        </div>
+                        <a th:text="${el.getName()}" class="another-count">
+
+                        </a>
+                    </div>
+                </th:block>
+            </div>
+
+
+            <div class="flex-center" style="margin-top: 15px;">
+                <a class="button-virable" onclick="this.parentElement.parentElement.submit()">
+                    Составить
+                </a>
+            </div>
+        </form>
+
+        <!--<div class="ege-pre-header">
+            <b>Задания</b>
+        </div>
+
+        <a rel="nofollow" target="_blank" th:href="@{'/task?id=' + ${id}+'&print=true'}">Версия для печати и копирования
+            в MS
+            Word</a>
+-->
+    </div>
+</div>
+</body>
+
+</html>

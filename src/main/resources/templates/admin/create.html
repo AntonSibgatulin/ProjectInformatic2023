@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}"/>
+    <script src="../../js/admin.js"></script>
+
+
+    <title>Создать задание по информатике</title>
+</head>
+<body>
+
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+
+           <div id="taskModel">
+
+                <div style="" class="prob_nums">Тип
+                    <select id="type_select" name="type" style="margin-left: 3px;">
+                        <th:block th:each="el:${types}">
+                            <option th:value="${el.type}" th:text="@{'№'+${el.type}+' '+${el.name}}"></option>
+                        </th:block>
+                    </select>
+                    &nbsp;№&nbsp;#NUMBER
+                    <img
+                            src="../../image/system/portfel.png" class="briefcase" style="filter: grayscale(0.8);"
+                            onclick="login_popup();"
+                    ></div>
+
+                <div class="task" id="task" width="100%">
+                    <textarea id="task_text" class="task_text" placeholder="Текст задания"></textarea>
+                </div>
+
+                <textarea id="solution_text" class="" placeholder="Текст решения">Решим задание с помощью языка программирования Python методом :</textarea>
+
+                <div class="panel-runner">
+                    <div class="element" style="border-left: 1px solid rgba(0, 0, 0, 0.13);
+            min-width: 120px;font-size: 14pt;color: white;" id="status_of_code">
+
+                        Ready
+
+                    </div>
+                    <div class="element" onclick=" runCode()">
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" width="308" height="615" viewBox="0 0 308 615" fill="none">
+                            <path d="M0 307.535L307.694 0.498779V614.571L0 307.535Z" fill="#84BD00"/>
+                        </svg>
+                        -->
+                        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false"
+                             class="style-scope yt-icon"
+                             style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                            <g mirror-in-rtl="" class="style-scope yt-icon">
+                                <path d="M9.4,18.4l-0.7-0.7l5.6-5.6L8.6,6.4l0.7-0.7l6.4,6.4L9.4,18.4z"
+                                      class="style-scope yt-icon" fill="#84BD00"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="code_edit">
+                    <div class="element_main">
+                        <textarea id="code">#you are welcome here</textarea>
+
+                    </div>
+                    <div class="element">
+                        <div class="panel" id="buttons-hbox">
+                            <!--   <div class="flex-center">
+                                   <a class="sliding-button">print</a>
+                               </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-input-data">
+
+                    <!--<div class="input-data">
+                        <div class="text">Input data:</div>
+                        <textarea id="input_data_textarea"></textarea>
+                    </div>
+                    -->
+
+                    <div class="input-data" style="width: 100%" width="100%">
+                        <div class="text">Output data:</div>
+                        <textarea id="output_data_textarea"></textarea>
+                    </div>
+
+
+                </div>
+
+                <div style="height: 17pt;"></div>
+
+                <div class="flex-center">
+                    <input type="text" id="author" class="input-text-virable" placeholder="AUTHOR">
+                </div>
+
+                <div style="height: 17pt;"></div>
+
+                <a onclick="createTask()" class="button-virable" style="margin: 0px 0px;" >Создать</a>
+
+                <div style="height: 17pt;"></div>
+
+            </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var editor = null;
+    window.onload = async function () {
+        create_virable = await $.get(window.origin + "/templates/create-virable.html?id=" + Math.random());
+        print_html = await $.get(window.origin + "/templates/print.html?id=" + Math.random());
+        cicle_for_window = await $.get(window.origin + "/templates/cicle-or-window.html?id=" + Math.random());
+        condition = await $.get(window.origin + "/templates/if.html?id=" + Math.random());
+        conditionelif = await $.get(window.origin + "/templates/elif.html?id=" + Math.random());
+        split_html = await $.get(window.origin + "/templates/split.html?id=" + Math.random());
+        def_html = await $.get(window.origin + "/templates/def.html?id=" + Math.random());
+
+        output = document.getElementById("output_data_textarea");
+        window_controller = document.getElementById("window-controller");
+
+
+        editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            /*mode: "python",*/
+            mode: {
+                name: "python",
+                version: 3,
+                singleLineStringErrors: false
+            },
+            matchBrackets: true,
+            indentUnit: 4,
+            styleActiveSelected: true,// подсвечивать парные скобки
+            theme: "darcula"
+        });
+    }
+</script>
+
+</body>
+</html>

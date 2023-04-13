@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+    <script src="../../../js/admin.js"></script>
+
+    <title>Добавление задач</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+
+
+        <div class="flex-center">
+            <a class="create"></a>
+        </div>
+
+
+        <div class="flex-center" style="font-size: 20pt;margin-top: 10px">
+            Типы заданий по информатике
+        </div>
+
+
+        <div class="main-elements">
+            <div class="information">
+                <div class="id">TYPE</div>
+                <div class="description">DESCRIPTION </div>
+
+                <div class="rightpanel">
+                    <a class="button-virable"
+                       style="color:black;margin-bottom: 10px;background-color: #7bfd50;" onclick="createTypeOfTask()">Созд.</a>
+                    <a class="button-virable" style="background-color: #fd5e50;margin-bottom: 10px;">Act</a>
+
+                </div>
+
+            </div>
+
+            <th:block th:each="el : ${types}">
+                <div class="information">
+                    <div class="id" th:text="${el.getType()}"></div>
+
+                    <div class="description" th:text="${el.getName()}"></div>
+                    <div class="rightpanel">
+                        <a class="button-virable" style="color:black;margin-bottom: 10px;background-color: #7bfd50;" th:onclick="@{'editTypeOfTask('+${el.getId()}+')'}">Ред.</a>
+                        <a class="button-virable" style="background-color: #fd5e50;margin-bottom: 10px;" th:onclick="@{'deleteTypeOfTask('+${el.getId()}+')'}">Удалить</a>
+                    </div>
+
+                </div>
+            </th:block>
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

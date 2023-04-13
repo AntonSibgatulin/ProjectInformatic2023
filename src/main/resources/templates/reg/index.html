@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Авторизация</title>
+
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+</head>
+<body>
+
+
+<div class="block-display">
+    <div class="window-create" style="justify-content: center;
+    align-items: start;
+    justify-items: center;
+    align-content: center;">
+
+        <div class="panel-close-window">
+
+        </div>
+
+        <!--<div class="close-window" onclick="closeWindow(this)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g id="close">
+                    <path id="x"
+                          d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z"></path>
+                </g>
+            </svg>
+        </div>
+        -->
+
+
+        <div class="flex-center">
+
+            <div class="text-header">
+                Регистрация
+            </div>
+
+        </div>
+
+        <form action="/regin" method="GET" style="margin-top: 30px;">
+            <div>
+                <div class="text-virable">Логин</div>
+                <div class="flex-center">
+                    <input onkeydown="await onchanged(this)"  type="text" name="login" id="login" class="input-text-virable"
+                           placeholder="Придумайте логин" maxlength="20"/>
+                </div>
+            </div>
+
+            <div>
+                <div class="text-virable">Почта</div>
+                <div class="flex-center">
+                    <input onkeydown="onchanged(this)" onfocus="focus(this)" type="E-mail" name="mail" id="mail" class="input-text-virable"
+                           placeholder="E-mail@gmail.com" />
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-virable">Имя</div>
+                <div class="flex-center">
+                    <input onkeydown="onchanged(this)" onfocus="focus(this)" type="text" name="name" id="name" class="input-text-virable"
+                           placeholder="Имя"/>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-virable">Фамилия</div>
+                <div class="flex-center">
+                    <input onkeydown="onchanged(this)" onfocus="focus(this)" type="text" name="surname" id="surname" class="input-text-virable"
+                           placeholder="Фамилия"/>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-virable">Пароль</div>
+                <div class="flex-center">
+                    <input onkeydown="onchanged(this)" onfocus="focus(this)" id="password" name="password" type="password"
+                           class="input-text-virable"
+                           placeholder='Password' maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="flex-left" style="margin-top: 10px">
+                <a href="/auth" style="font-size: 15pt">Авторизация</a>
+            </div>
+
+            <div class="flex-right">
+                <a class="button-virable" onclick="send(this)">Регистрация</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    window.onload = async function () {
+
+
+    }
+
+    function focus(a) {
+        a.style = "";
+    }
+    async function onchanged(a){
+        focus(a)
+        if (await checkLogins()) {
+            document.getElementById("login").style = "background-color: rgba(35, 243, 35, 0.68);";
+        }else{
+            document.getElementById("login").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+        }
+            document.getElementById("surname").style="";
+        document.getElementById("name").style="";
+        document.getElementById("mail").style="";
+        document.getElementById("password").style="";
+
+
+        var name = document.getElementById("name").value
+
+
+        var surname = document.getElementById("surname").value
+
+        var mail = document.getElementById("mail").value
+
+        var password = document.getElementById("password").value
+
+
+        if (name.length < 3) {
+            document.getElementById("name").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+
+        }else{
+            document.getElementById("name").style = " background-color: rgba(35, 243, 35, 0.68);"
+
+
+        }
+
+
+        if (surname.length < 3) {
+            document.getElementById("surname").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+
+
+        }else{
+            document.getElementById("surname").style = "background-color: rgba(35, 243, 35, 0.68);"
+
+        }
+
+
+
+        if (checkValid(password) == false) {
+            document.getElementById("password").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+
+        }else{
+
+            document.getElementById("password").style = "background-color: rgba(35, 243, 35, 0.68);"
+
+
+        }
+
+        if (checkMail(mail) == false) {
+            document.getElementById("mail").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+            return;
+        }else{
+
+            document.getElementById("mail").style = "background-color: rgba(35, 243, 35, 0.68)"
+
+
+        }
+    }
+
+    async function send(a) {
+        if (await checkLogin()) {
+            document.getElementById("login").style="background-color: rgba(35, 243, 35, 0.68);";
+            document.getElementById("surname").style="";
+            document.getElementById("name").style="";
+            document.getElementById("mail").style="";
+            document.getElementById("password").style="";
+
+
+            var name = document.getElementById("name").value
+
+
+            var surname = document.getElementById("surname").value
+
+            var mail = document.getElementById("mail").value
+
+            var password = document.getElementById("password").value
+
+
+            if (name.length < 3) {
+                document.getElementById("name").style = "background-color: rgba(243, 35, 35, 0.68);"
+                return;
+
+            }else{
+                document.getElementById("name").style = " background-color: rgba(35, 243, 35, 0.68);"
+
+
+            }
+
+
+            if (surname.length < 3) {
+                document.getElementById("surname").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+                return;
+
+            }else{
+                document.getElementById("surname").style = "background-color: rgba(35, 243, 35, 0.68);"
+
+            }
+
+
+
+            if (checkValid(password) == false) {
+                document.getElementById("password").style = "background-color: rgba(243, 35, 35, 0.68);"
+                alert("Пароль может состоять только из латинских букв верхнего и нижнего регистра и цифр!Минимум 3 символа,максимум 14!Пароль не должен быть простым!")
+
+                return;
+            }else{
+
+                document.getElementById("password").style = "background-color: rgba(35, 243, 35, 0.68);"
+
+
+            }
+
+            if (checkMail(mail) == false) {
+                document.getElementById("mail").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+                return;
+            }else{
+
+                document.getElementById("mail").style = "background-color: rgba(35, 243, 35, 0.68)"
+
+
+            }
+
+
+            a.parentElement.parentElement.submit()
+
+        } else {
+
+
+            document.getElementById("login").style = "background-color: rgba(243, 35, 35, 0.68);"
+
+
+        }
+
+    }
+
+    function checkValid(str) {
+        //var regex = /^[\w-]{4,10}$/i;
+       // var regex = new RegExp("[a-zA-Z]\\w{3,20}")
+        var regex = new RegExp("^[a-zA-Z][a-zA-Z0-9-_\\.]{3,20}$");
+        return regex.test(str)
+    }
+
+    function checkMail(mail) {
+        let regexp = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        return regexp.test(mail)
+    }
+
+    async function checkLogin() {
+        var val = document.getElementById("login").value;
+        var html = await $.post("/checklogin", {login: val});
+
+        if (html == "ok") {
+            return true;
+        }
+
+
+        if (html == "exist") {
+            alert("Пользователь с таким логином создан")
+        }
+        if (html == "invalid") {
+            alert("Логин может состоять только из латинских букв верхнего и нижнего регистра и цифр!Минимум 3 символа,максимум 14!")
+        }
+
+        return false;
+
+    }
+
+    async function checkLogins() {
+        var val = document.getElementById("login").value;
+        var html = await $.post("/checklogin", {login: val});
+
+        if (html == "ok") {
+            return true;
+        }else
+
+
+
+        return false;
+
+    }
+</script>
+
+
+</body>
+</html>

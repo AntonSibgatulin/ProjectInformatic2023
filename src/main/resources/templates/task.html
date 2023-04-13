@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+    <title>Информатик-2023: задания, ответы, решения.</title>
+
+    <th:block th:if="${user!=null && user.getTypeUser()>0}">
+
+        <script src="../../../js/admin.js"></script>
+
+    </th:block>
+
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+        <!--<div class="ege-pre-header">
+            <b>Задания</b>
+        </div>
+
+        <a rel="nofollow" target="_blank" th:href="@{'/task?id=' + ${id}+'&print=true'}">Версия для печати и копирования
+            в MS
+            Word</a>
+-->
+        <div id="taskModel" class="taskModel">
+
+
+            <div style="width: 90px;" class="admin_panel" th:if="${user!=null && user.getTypeUser()>0}">
+
+                <div onclick="deleteTask(this)" class="button-window">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <g id="close">
+                            <path id="x"
+                                  d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z"></path>
+                        </g>
+                    </svg>
+                </div>
+
+
+                <div style="background-color: #7bfd50;" class="button-window" th:onclick="@{'openEditTaskById('+${id}+')'}">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         version="1.1"
+                         id="Capa_1" x="0px" y="0px" viewBox="0 0 277.141 277.141"
+                         style="enable-background:new 0 0 277.141 277.141;" xml:space="preserve">
+<path d="M274.804,58.127L219.013,2.335C217.507,0.829,215.498,0,213.356,0c-2.143,0-4.151,0.829-5.656,2.335L28.281,181.754  c-2.834,2.834-5.996,8.283-7.05,12.147l-20.95,76.817c-0.521,1.912-0.308,3.621,0.602,4.813c0.792,1.038,2.061,1.609,3.572,1.609  c0.619,0,1.28-0.095,1.964-0.281l76.818-20.951c3.865-1.054,9.314-4.216,12.147-7.049L274.804,69.44  c1.506-1.506,2.335-3.515,2.335-5.657C277.139,61.641,276.31,59.632,274.804,58.127z M65.155,235.776l-3.702,3.702  c-1.167,1.167-3.424,2.477-5.016,2.911l-26.926,7.343c-1.592,0.434-2.539-0.513-2.105-2.105l7.343-26.926  c0.434-1.592,1.744-3.849,2.911-5.016l3.702-3.702c1.167-1.167,3.076-1.167,4.243,0l19.549,19.549  C66.322,232.7,66.322,234.61,65.155,235.776z M221.367,76.985L109.119,189.233c-2.929,2.929-6.768,4.394-10.606,4.394  s-7.678-1.465-10.606-4.394c-5.858-5.857-5.858-15.355,0-21.213L200.154,55.772c5.857-5.857,15.355-5.857,21.213,0  C227.225,61.63,227.225,71.128,221.367,76.985z"/>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+            </div>
+
+
+            <div style="" class="prob_nums">Тип [[${type}]]&nbsp;№&nbsp;<a
+                    th:href="@{'/task?id=' + ${id}}">[[${id}]]</a>
+                <img
+                        src="image/system/portfel.png" class="briefcase" style="filter: grayscale(0.8);"
+                        onclick="login_popup();"
+                ></div>
+
+            <div class="task" id="task" width="100%">
+
+            </div>
+
+
+            <div class="panel-runner">
+                <div class="element" style="border-left: 1px solid rgba(0, 0, 0, 0.13);
+            min-width: 120px;font-size: 14pt;color: white;" id="status_of_code">
+
+                    Ready
+
+                </div>
+                <div class="element" onclick=" runCode()">
+                    <!--<svg xmlns="http://www.w3.org/2000/svg" width="308" height="615" viewBox="0 0 308 615" fill="none">
+                        <path d="M0 307.535L307.694 0.498779V614.571L0 307.535Z" fill="#84BD00"/>
+                    </svg>
+                    -->
+                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false"
+                         class="style-scope yt-icon"
+                         style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                        <g mirror-in-rtl="" class="style-scope yt-icon">
+                            <path d="M9.4,18.4l-0.7-0.7l5.6-5.6L8.6,6.4l0.7-0.7l6.4,6.4L9.4,18.4z"
+                                  class="style-scope yt-icon" fill="#84BD00"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="code_edit">
+                <div class="element_main">
+                    <textarea id="code">#you are welcome here</textarea>
+
+                </div>
+                <div class="element">
+                    <div class="panel" id="buttons-hbox">
+                        <!--   <div class="flex-center">
+                               <a class="sliding-button">print</a>
+                           </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-input-data">
+
+                <!--<div class="input-data">
+                    <div class="text">Input data:</div>
+                    <textarea id="input_data_textarea"></textarea>
+                </div>
+                -->
+
+                <div class="input-data" style="width: 100%" width="100%">
+                    <div class="text">Output data:</div>
+                    <textarea id="output_data_textarea"></textarea>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="flex-center">
+                <input type="text" id="myanswer" class="input-text-virable" placeholder="Ответ:"  oninput="checkAnswer()"  style="">
+
+                <input type="text" id="answer" th:value="${answer}"  style="display: none">
+
+            </div>
+            <div class="flex-center" id="isAcceptOrDenied">
+
+            </div>
+
+
+            <div class="decided" id="decided_text" onclick="showDecided()">Показать решение</div>
+
+            <div style="height: 17pt;"></div>
+
+
+            <div id="decided_info" style="display: none">
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="window-controller">
+
+</div>
+
+
+<script th:inline="javascript">
+    var json = [[${json}]];
+
+    var buttons = JSON.parse('[[${buttons}]]')//.replaceAll("\\&quot", '\\"').replaceAll("&quot;", '"').replaceAll("&lt;", "<").replaceAll("&gt;", ">"));
+    var functions = JSON.parse('[[${functions}]]')//.replaceAll("\\&quot", '\\"').replaceAll("&quot;", '"').replaceAll("&lt;", "<").replaceAll("&gt;", ">"));
+    json = json.replaceAll("\r\n", "<div class='new-wrap'></div>").replaceAll("\\n", "<div class='new-wrap'></div>").replaceAll("\n", "<div class='new-wrap'></div>");
+    json = JSON.parse(json)
+
+
+    function checkAnswer(){
+        var answer = document.getElementById("answer").value;
+        var value = document.getElementById("myanswer").value;
+        var isAcceptOrDenied = document.getElementById("isAcceptOrDenied");
+        if (value == answer || (answer.includes(value) && value == answer.replaceAll(" ","").replaceAll("\n","")) || value.toUpperCase()==answer ||value.toUpperCase() == answer.replaceAll(" ","").replaceAll("\n","")) {
+
+            document.getElementById("myanswer").style = "background-color:#23f323ad";
+            isAcceptOrDenied.style="color:#23f323ad;";
+            isAcceptOrDenied.innerHTML = "Браво,всё верно!";
+        } else {``
+            document.getElementById("myanswer").style = "background-color: #f32323ad";
+            isAcceptOrDenied.style="color: #f32323ad";
+            isAcceptOrDenied.innerHTML = "Не верно!";
+
+        }
+    }
+
+    window.onload = async function () {
+        answer = json.answer;
+        await loadAllConfig()
+
+        for (var i = 0; i < buttons.length; i++) {
+            var elementary = ` <div class="flex-center">
+                        <div lang="ru" class="sliding-button" onclick="` + functions[i] + `()">` + buttons[i] + `</div>
+                    </div>`;
+            $("#buttons-hbox").append(elementary)
+        }
+
+
+        output = document.getElementById("output_data_textarea");
+        window_controller = document.getElementById("window-controller");
+
+
+        editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            /*mode: "python",*/
+            mode: {
+                name: "python",
+                version: 3,
+                singleLineStringErrors: false
+            },
+            matchBrackets: true,
+            indentUnit: 4,
+            styleActiveSelected: true,// подсвечивать парные скобки
+            theme: "darcula"
+        });
+        //var edit_decided =
+        decided_info = $("#decided_info");
+        decided_info_document = document.getElementById("decided_info")
+        decided_text = document.getElementById("decided_text")
+        task_element = document.getElementById("task");
+        task_element.innerHTML = json.text;
+        var code = json.solution.split("<code>");
+
+        indexCode = 0;
+
+        for (var i = 0; i < code.length - 1; i++) {
+            var c = code[i].split("</code>")[0]
+            codeArray.push(c)
+        }
+
+
+        json.solution = json.solution.replaceAll("</code>", "</textarea>")
+        for (var i = 0; i < code.length - 1; i++) {
+            // console.log(codeArray[i])
+            //  console.log(codeArray[i].replaceAll("<div class='new-wrap'></div>", ""))
+            //  console.log(json.solution.replace("<code>", "<textarea id='solution" + i + "'>").replaceAll("<div class='new-wrap'></div>", ""))
+            json.solution = json.solution.replace("<code>", "<textarea id='solution" + i + "'>").replaceAll("<div class='new-wrap'></div>", "\n");
+            indexCode++;
+
+        }
+
+
+    }
+
+    /*
+        async function main() {
+            let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/" });
+            // Pyodide ready
+            console.log("Ready!")
+            return pyodide;
+        };
+
+        let pyodideReadyPromise = main();
+
+        async function addToOutput(s) {
+            output.value += ">>>" + s + "\n";
+            console.log("run: "+s)
+        }
+
+        async function evaluatePython() {
+            let pyodide = await pyodideReadyPromise;
+            try {
+                console.log(editor.getValue())
+                var output = pyodide.runPython(editor.getValue());
+                addToOutput(output)
+            } catch (err) {
+                addToOutput(err);
+            }
+        }
+
+
+     */
+
+</script>
+</body>
+</html>

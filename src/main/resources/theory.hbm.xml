@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ru.antonsibgatulin.teory">
+
+    <class name="TheoryModel" table="teory">
+        <meta attribute="class-description">
+            This class contains the user detail.
+        </meta>
+        <id name="id" type="java.lang.Integer" column="id">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="name" column="name" type="string"/>
+        <property name="description" column="description" type="string"/>
+
+        <property name="time" column="time" type="long"/>
+
+    </class>
+</hibernate-mapping>

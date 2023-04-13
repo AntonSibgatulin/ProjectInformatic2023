@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping
+	package="ru.antonsibgatulin.informatic">
+
+	<class name="InformationModel" table="informatic_task">
+		<meta attribute="class-description">
+			This class contains the user detail.
+		</meta>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="native" />
+		</id>
+		<property name="texts" column="texts" type="text" />
+		<property name="solution" column="solution" type="text" />
+		<property name="type" column="type" type="int" />
+		<property name="views" column="views" type="long" />
+		<property name="likes" column="likes" type="long" />
+		<property name="dislike" column="dislike" type="long" />
+		<property name="comments" column="comments" type="long" />
+
+		<property name="time_of_public" column="time_of_public"
+			type="long" />
+		<property name="lang" column="lang" type="string" />
+		<property name="input_data_json" column="input_data_json"
+			type="text" />
+		<property name="output_data_json" column="output_data_json"
+			type="text" />
+		<property name="author" column="author" type="string" />
+	</class>
+</hibernate-mapping>

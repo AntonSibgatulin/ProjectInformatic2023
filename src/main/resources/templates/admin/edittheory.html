@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+    <script src="../../js/admin.js"></script>
+
+    <title>Редактирование раздела теории</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+        <div class="flex-center">
+            <a>Редактирование раздела теории</a>
+        </div>
+
+        <div id="place_for_tasks">
+
+        </div>
+
+        <div class="main-elements">
+            <div>
+                <div class="main-header" th:id="@{'theory_'+${object.getId()}}"
+                     style="justify-content: space-between; padding: 10px">
+                    <input type="text" class="input-text-virable"
+                           style="width: calc(100% - 100px);font-size: 15pt;font-weight: bold;"
+                           th:value="${object.getName()}" id="header"/>
+
+                    <div class="admin_panel" style="width: 90px; position: inherit;  margin-top: 0px;  "
+                         th:if="${user!=null && user.getTypeUser()>0}">
+
+                        <a href="/admin/theory" class="button-window">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g id="close">
+                                    <path id="x"
+                                          d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z"></path>
+                                </g>
+                            </svg>
+                        </a>
+
+                        <div style="background-color: #7bfd50;" class="button-window" th:id="@{'theory_'+${object.getId()}}" onclick="updateTheory(this)">
+                           <img src="https://cdn-icons-png.flaticon.com/512/37/37558.png">
+                             </div>
+                    </div>
+
+
+                </div>
+                <div class="main-header add-to editor">
+                    <textarea id="description" style="" th:utext="${object.getDescriptionGeneAdmin()}"></textarea>
+
+                </div>
+                <div class="flex-center">
+                    <a class="button-virable" th:id="@{'theory_'+${object.getId()}}" onclick="updateTheory(this)">Сохранить</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

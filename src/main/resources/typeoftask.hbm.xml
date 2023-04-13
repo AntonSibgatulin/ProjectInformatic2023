@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ru.antonsibgatulin.typeoftask">
+
+    <class name="TypeoftaskModel" table="type_of_task">
+        <meta attribute="class-description">
+            This class contains the user detail.
+        </meta>
+
+        <id name="id" type="java.lang.Integer" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="type" column="type" type="java.lang.Integer"/>
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="link" column="link" type="java.lang.String"/>
+        <property name="hide" column="hide" type="java.lang.Integer"/>
+
+    </class>
+</hibernate-mapping>

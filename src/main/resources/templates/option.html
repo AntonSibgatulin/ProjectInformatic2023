@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+    <script type="text/javascript" th:if="${user!=null && user.getTypeUser()>0}" src="../../../js/admin.js"></script>
+
+    <title>Добавление задач</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+
+        <div class="flex-center">
+            <div class="pre-header">
+                Вариант №[[${id}]]
+            </div>
+
+        </div>
+        <div th:if="${svet==false}" class="flex-center">
+
+            <a onclick="changeSetting(this)" style="cursor:pointer;margin-top: 10px" id="svetsetting" >
+                Подсвечивать
+            </a>
+
+        </div>
+        <div  th:unless="${svet==false}" class="flex-center">
+
+            <a onclick="changeSetting(this)" style="cursor:pointer;margin-top: 10px" id="svetsetting">
+                Не подсвечивать
+            </a>
+
+        </div>
+
+        <div id="place_for_tasks">
+            <th:block th:each="el : ${list}">
+                <div th:id="@{'taskModel_'+${el.id}}" class="taskMoel">
+
+
+                    <div class="admin_panel" th:if="${user!=null && user.getTypeUser()>0}">
+
+                        <div onclick="deleteTask(this)" class="button-window">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g id="close">
+                                    <path id="x"
+                                          d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <div onclick="hideElement(this)" style="background-color: #fdc850;" class="button-window">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 version="1.1"
+                                 id="Capa_1" x="0px" y="0px" width="485.064px" height="485.064px"
+                                 viewBox="0 0 485.064 485.064"
+                                 style="enable-background:new 0 0 485.064 485.064;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M458.736,181.097H26.334C11.793,181.097,0,192.884,0,207.425v70.215c0,14.541,11.787,26.328,26.334,26.328h432.402    c14.541,0,26.328-11.787,26.328-26.328v-70.215C485.07,192.884,473.283,181.097,458.736,181.097z"/>
+	</g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+</svg>
+                        </div>
+
+                        <div style="background-color: #7bfd50;" class="button-window" onclick="openEditTask(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 version="1.1"
+                                 id="Capa_1" x="0px" y="0px" viewBox="0 0 277.141 277.141"
+                                 style="enable-background:new 0 0 277.141 277.141;" xml:space="preserve">
+<path d="M274.804,58.127L219.013,2.335C217.507,0.829,215.498,0,213.356,0c-2.143,0-4.151,0.829-5.656,2.335L28.281,181.754  c-2.834,2.834-5.996,8.283-7.05,12.147l-20.95,76.817c-0.521,1.912-0.308,3.621,0.602,4.813c0.792,1.038,2.061,1.609,3.572,1.609  c0.619,0,1.28-0.095,1.964-0.281l76.818-20.951c3.865-1.054,9.314-4.216,12.147-7.049L274.804,69.44  c1.506-1.506,2.335-3.515,2.335-5.657C277.139,61.641,276.31,59.632,274.804,58.127z M65.155,235.776l-3.702,3.702  c-1.167,1.167-3.424,2.477-5.016,2.911l-26.926,7.343c-1.592,0.434-2.539-0.513-2.105-2.105l7.343-26.926  c0.434-1.592,1.744-3.849,2.911-5.016l3.702-3.702c1.167-1.167,3.076-1.167,4.243,0l19.549,19.549  C66.322,232.7,66.322,234.61,65.155,235.776z M221.367,76.985L109.119,189.233c-2.929,2.929-6.768,4.394-10.606,4.394  s-7.678-1.465-10.606-4.394c-5.858-5.857-5.858-15.355,0-21.213L200.154,55.772c5.857-5.857,15.355-5.857,21.213,0  C227.225,61.63,227.225,71.128,221.367,76.985z"/>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+</svg>
+                        </div>
+                    </div>
+
+
+                    <div class="admin_panel" th:unless="${user!=null && user.getTypeUser()>0}">
+                        <div onclick="hideWithDeleteElement(this)" style="background-color: #fdc850;"
+                             class="button-window">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 version="1.1"
+                                 id="Capa_1" x="0px" y="0px" width="485.064px" height="485.064px"
+                                 viewBox="0 0 485.064 485.064"
+                                 style="enable-background:new 0 0 485.064 485.064;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M458.736,181.097H26.334C11.793,181.097,0,192.884,0,207.425v70.215c0,14.541,11.787,26.328,26.334,26.328h432.402    c14.541,0,26.328-11.787,26.328-26.328v-70.215C485.07,192.884,473.283,181.097,458.736,181.097z"/>
+	</g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+                                <g>
+</g>
+</svg>
+                        </div>
+                    </div>
+
+
+                    <div style="" class="prob_nums">Тип [[${el.type}]]&nbsp;№&nbsp;<a
+                            th:href="@{'/task?id=' + ${el.id}}">[[${el.id}]]</a>
+                        <img
+                                src="image/system/portfel.png" class="briefcase" style="filter: grayscale(0.8);"
+                                onclick="login_popup();"
+                        ></div>
+                    <div th:utext="${el.texts}" class="task" id="task" width="100%">
+
+                    </div>
+
+                    <div class="flex-left">
+                        <input type="text" th:id="@{'input_'+${el.id}}" class="input-text-virable" placeholder="Ответ:"
+                               oninput="checkAnswer(this)"
+
+                        >
+                    </div>
+
+                    <th:block th:if="${option.type==0}">
+
+                        <div class="decided" th:id="@{'decided_text_'+${el.id}}"
+                             th:onclick="@{'showDecidedById('+${el.id}+')'}">
+                            Показать решение
+                        </div>
+
+                        <div style="height: 17pt;"></div>
+
+
+                        <div class="decided_info" th:id="@{'decided_info_'+${el.id} }" style="display: none">
+
+                            <th:block th:utext="${el.getDecidedSolution()}">
+
+                            </th:block>
+                            <div class="flex-left" style="margin-top: 10px"><a>Ответ:
+                                [[${el.getOutput_data_json()}]]</a>
+
+                                <div style="display: none" th:id="@{'answer_'+${el.id}}">[[${el.getOutput_data_json()}]]
+                                </div>
+                            </div>
+
+                        </div>
+                        <div style="height: 15pt;"></div>
+                    </th:block>
+                </div>
+                <th:block th:if="${option.type==0}">
+
+                <script th:inline="javascript">
+                    var editor_[[${el.id}]] = CodeMirror.fromTextArea(document.getElementById("code_[[${el.id}]]"), {
+                        lineNumbers: true,
+                        mode: {
+                            name: "python",
+                            version: 3,
+                            singleLineStringErrors: false
+                        },
+                        matchBrackets: true,
+                        indentUnit: 4,
+                        styleActiveSelected: true,// подсвечивать парные скобки
+                        theme: "darcula"
+                    });
+                </script>
+                </th:block>
+            </th:block>
+        </div>
+
+
+        <div class="flex-center" style="margin-top: 25px;">
+            <div class="pre-header" id="result">
+
+            </div>
+        </div>
+
+        <div class="flex-center" style="margin-top: 25px;">
+            <a onclick="checkAll()" class="button-virable">Проверить</a>
+        </div>
+
+
+    </div>
+</div>
+
+<script th:inline="javascript">
+    count_tasks = [[${list.size()}]];
+    var svet = [[${svet}]] || false;
+    var  win = null;
+
+
+    function changeSetting(a){
+        svet = !svet;
+
+        if(svet) {
+            window.history.pushState(null,null,window.location.pathname+"?id="+[[${id}]]+"&svet=true")
+            a.innerHTML="Не подсвечивать"
+            var doc = document.getElementById("place_for_tasks");
+            for (var i = 0; i < doc.children.length; i++) {
+                var id = doc.children[i].id.split("_")[1];
+                if (doc.children[i].id == null || document.getElementById("input_" + id) == null) continue
+                var value = document.getElementById("input_" + id).value;
+                var answer = document.getElementById("answer_" + id).innerHTML;
+
+                if(value==null ||value.length==0)continue;
+
+                if (value == answer || (answer.includes(value) && value == answer.replaceAll(" ", "").replaceAll("\n", "")) || value.toUpperCase() == answer || value.toUpperCase() == answer.replaceAll(" ", "").replaceAll("\n", "")) {
+
+                    // if (value == answer || (answer.includes(value) && value == answer.replaceAll(" ","").replaceAll("\n",""))) {
+
+                    document.getElementById("input_" + id).style = "background-color:#23f323ad";
+                } else {
+                    document.getElementById("input_" + id).style = "background-color: #f32323ad";
+
+                }
+
+            }
+        }else {
+
+            window.history.pushState(null,null,window.location.pathname+"?id="+[[${id}]])
+            a.innerHTML = "Подсвечивать"
+            var doc = document.getElementById("place_for_tasks");
+
+            for (var i = 0; i < doc.children.length; i++) {
+                var id = doc.children[i].id.split("_")[1];
+                if (doc.children[i].id == null || document.getElementById("input_" + id) == null) continue
+                var value = document.getElementById("input_" + id);
+                value.style="";
+            }
+        }
+    }
+    //background-color: #23f323ad;
+    //background-color: #f32323ad;
+    window.onload =  function () {
+        if(!isMobile.any()) {
+            win = window.open(window.location.origin + "/editor", 'targetWindow',
+                `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=no,
+                                    width=700,
+                                    height=SomeSize`);
+            win.onload = function () {
+                win.resizeTo(750, win.innerHeight)
+            }
+        }
+
+    }
+
+
+    function changeInputAnswer(a) {
+
+        a.style = "";
+
+    }
+
+
+
+    function checkAnswer(a){
+        if(svet==false){
+            a.style="";
+            return;}
+        var id = a.id.split("_")[1];
+        var value = a.value;
+        var answer = document.getElementById("answer_" + id).innerHTML;
+
+
+        if (value == answer || (answer.includes(value) && value == answer.replaceAll(" ","").replaceAll("\n","")) || value.toUpperCase()==answer ||value.toUpperCase() == answer.replaceAll(" ","").replaceAll("\n","")) {
+
+            a.style = "background-color:#23f323ad";
+
+        } else {
+            a.style = "background-color: #f32323ad";
+
+
+        }
+    }
+
+
+
+    function checkAll() {
+        var accept = 0;
+        var doc = document.getElementById("place_for_tasks");
+        for (var i = 0; i < doc.children.length; i++) {
+            var id = doc.children[i].id.split("_")[1];
+            if (doc.children[i].id == null || document.getElementById("input_" + id) == null) continue
+            var value = document.getElementById("input_" + id).value;
+            var answer = document.getElementById("answer_" + id).innerHTML;
+            if (value == answer || (answer.includes(value) && value == answer.replaceAll(" ","").replaceAll("\n","")) || value.toUpperCase()==answer ||value.toUpperCase() == answer.replaceAll(" ","").replaceAll("\n","")) {
+
+                // if (value == answer || (answer.includes(value) && value == answer.replaceAll(" ","").replaceAll("\n",""))) {
+                accept++;
+                document.getElementById("input_" + id).style = "background-color:#23f323ad";
+            } else {
+                document.getElementById("input_" + id).style = "background-color: #f32323ad";
+
+            }
+
+        }
+        var text = "Отлично!";
+
+        var percent = accept * 100 / count_tasks;
+
+        if (percent < 55) {
+            text = "Попробуйте ещё раз!"
+        }
+        if (percent > 55 && percent < 75) {
+            text = "Не плохо!"
+        }
+        if (percent > 75 && percent < 95) {
+            text = "Хорошо!"
+        }
+
+        document.getElementById("result").innerHTML = "" + accept + "\\" + count_tasks + " " + text;
+    }
+
+</script>
+</body>
+</html>

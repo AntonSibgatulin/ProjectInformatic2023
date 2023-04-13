@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+    <script src="../../js/admin.js"></script>
+
+    <title>Добавление задач</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+        <div class="flex-center">
+            <a>Создание раздела теории</a>
+        </div>
+
+        <div id="place_for_tasks">
+
+        </div>
+
+        <div class="main-elements">
+            <div>
+                <div class="main-header"
+                     style="justify-content: space-between; padding: 10px">
+                    <input type="text" class="input-text-virable"
+                           style="width: calc(100% - 0px);font-size: 15pt;font-weight: bold;"
+                     id="header"/>
+
+
+
+                </div>
+                <div class="main-header add-to editor">
+                    <textarea id="description" style="" ></textarea>
+
+                </div>
+                <div class="flex-center">
+                    <a class="button-virable" onclick="saveTheory()">Сохранить</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

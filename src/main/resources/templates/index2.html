@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <th:block th:utext="${standart_header}">
+
+    </th:block>
+
+
+    <title>Добавление задач</title>
+</head>
+<body>
+
+<th:block th:utext="${header}">
+
+</th:block>
+
+
+<div id="mainController">
+
+    <th:block th:utext="${left_panel}">
+
+    </th:block>
+
+    <div id="container">
+
+        <div class="flex-center">
+            <input type="text" class="input-text-virable" placeholder="Текст или номер задания\варианта"/>
+            <a onclick="searchTasks()" class="button-virable" style="margin: 5px 0px 2px 5px;">Search</a>
+
+        </div>
+
+        <div id="place_for_tasks">
+
+        </div>
+
+        <div class="flex-center">
+            <div class="pre-header">
+                Составить свой тест.
+            </div>
+        </div>
+
+
+        <div class="main-elements">
+            <th:block th:each="el : ${types}">
+                <div class="line">
+                    <div class="count">
+                        <div class="small-element">-</div>
+                        <div class="big-element"><input type="text" value="0"></div>
+                        <div class="small-element">+</div>
+
+                    </div>
+                    <a th:text="${el.getName()}" class="another-count">
+
+                    </a>
+                </div>
+            </th:block>
+        </div>
+
+        <div class="flex-center" style="margin-top: 25px;">
+            <a class="button-virable">Составить</a>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+    async function searchTasks() {
+        var doc1 = document.getElementsByClassName("input-text-virable")[0];
+        var doc = document.getElementById("place_for_tasks");
+        var el = await $.get("/admin/search?id=" + doc1.value)
+        doc.innerHTML = el
+    }
+
+</script>
+</body>
+</html>
